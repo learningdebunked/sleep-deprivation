@@ -1,0 +1,136 @@
+# external_values.yaml
+# Single source of truth for all published baseline metrics.
+# Every numeric claim in the manuscript must reference an entry here.
+# DO NOT edit values without updating the source citation.
+# Seeded: Stage 1 Novelty Gate — October 2026
+# synthetic: false (all values sourced from published papers)
+
+meta:
+  project: "nhanes-eeg-cogdecline-lstm-llm"
+  stage_seeded: 1
+  date_seeded: "2026-10-27"
+  synthetic: false
+
+baselines:
+
+  # ── NHANES-based cognitive prediction (Sakal et al. 2024, npj Aging) ──────
+  sakal_2024_nhanes_auc_processing_speed:
+    value: 0.82
+    comparator: ">="
+    metric: "AUC"
+    task: "Processing speed and attention prediction (older adults)"
+    dataset: "NHANES (accelerometer + sleep features)"
+    n: ">2400"
+    model: "CatBoost / XGBoost / Random Forest"
+    source: "Sakal et al. 2024, npj Aging"
+    doi: "10.1038/s41514-024-00177-x"
+    notes: "Reported as AUC >= 0.82 for processing speed and attention domains"
+
+  sakal_2024_nhanes_auc_recall:
+    value: 0.72
+    comparator: "~"
+    metric: "AUC"
+    task: "Recall / memory prediction (CERAD word-list)"
+    dataset: "NHANES (accelerometer + sleep features)"
+    n: ">2400"
+    model: "CatBoost / XGBoost / Random Forest"
+    source: "Sakal et al. 2024, npj Aging"
+    doi: "10.1038/s41514-024-00177-x"
+    notes: "Approximate value ~0.72; memory domain is harder to predict than processing speed"
+
+  # ── Sleep-EDF staging baselines ──────────────────────────────────────────
+  almutairi_2023_sleep_edf_accuracy:
+    value: 96.57
+    comparator: "=="
+    metric: "Accuracy (%)"
+    task: "5-class sleep staging"
+    dataset: "Sleep-EDF Expanded"
+    model: "SSNet (end-to-end CNN + LSTM)"
+    source: "Almutairi et al. 2023, SSNet preprint"
+    doi: null
+    url: "https://scispace.com/papers/24n8tj35"
+    notes: "Best reported accuracy on Sleep-EDF Expanded 5-class task"
+
+  almutairi_2023_sleep_edf_kappa:
+    value: 0.8305
+    comparator: "=="
+    metric: "Cohen's kappa"
+    task: "5-class sleep staging"
+    dataset: "Sleep-EDF Expanded"
+    model: "SSNet (end-to-end CNN + LSTM)"
+    source: "Almutairi et al. 2023, SSNet preprint"
+    doi: null
+    url: "https://scispace.com/papers/24n8tj35"
+
+  samaee_2025_sleep_edf_accuracy:
+    value: 85.3
+    comparator: "=="
+    metric: "Accuracy (%)"
+    task: "Sleep staging (multimodal Transformer)"
+    dataset: "Sleep-EDF"
+    model: "NeuroLingua (hierarchical Transformer + GCN)"
+    source: "Samaee et al. 2025, arXiv 2511.09773"
+    doi: null
+    arxiv: "2511.09773"
+
+  samaee_2025_sleep_edf_f1:
+    value: 0.800
+    comparator: "=="
+    metric: "Macro F1"
+    task: "Sleep staging (multimodal Transformer)"
+    dataset: "Sleep-EDF"
+    model: "NeuroLingua (hierarchical Transformer + GCN)"
+    source: "Samaee et al. 2025, arXiv 2511.09773"
+    doi: null
+    arxiv: "2511.09773"
+
+  samaee_2025_sleep_edf_kappa:
+    value: 0.796
+    comparator: "=="
+    metric: "Cohen's kappa"
+    task: "Sleep staging (multimodal Transformer)"
+    dataset: "Sleep-EDF"
+    model: "NeuroLingua (hierarchical Transformer + GCN)"
+    source: "Samaee et al. 2025, arXiv 2511.09773"
+    doi: null
+    arxiv: "2511.09773"
+
+  sidhu_2025_sleep_edf_accuracy:
+    value: 89.2
+    comparator: "=="
+    metric: "Accuracy (%)"
+    task: "Sleep staging (CNN-LSTM)"
+    dataset: "Sleep-EDF"
+    model: "Hybrid CNN-LSTM"
+    source: "Sidhu et al. 2025, IEEE ICEC2NT"
+    doi: "10.1109/icec2nt65402.2025.11379999"
+
+  # ── EEG–cognitive correlation (Stikic et al. 2011) ───────────────────────
+  stikic_2011_eeg_cognitive_corr_present:
+    value: 0.89
+    comparator: "=="
+    metric: "Pearson correlation"
+    task: "EEG predicting present cognitive performance (reaction time/accuracy)"
+    dataset: "EEG sustained attention task (n=50)"
+    model: "EEG feature regression"
+    source: "Stikic et al. 2011, Frontiers in Human Neuroscience"
+    doi: "10.3389/FNHUM.2011.00070"
+
+  stikic_2011_eeg_cognitive_corr_future:
+    value: 0.79
+    comparator: "=="
+    metric: "Pearson correlation"
+    task: "EEG predicting future cognitive performance"
+    dataset: "EEG sustained attention task (n=50)"
+    model: "EEG feature regression"
+    source: "Stikic et al. 2011, Frontiers in Human Neuroscience"
+    doi: "10.3389/FNHUM.2011.00070"
+    notes: "Primary EEG–cognitive alignment target for O4"
+
+# ── Proposal targets (to be filled at Stage 3 — Protocol Lock) ───────────────
+# Leave null until experimental design is fixed.
+proposal_targets:
+  nhanes_auc_primary: null        # Target AUC on NHANES cognitive classification
+  sleep_edf_accuracy: null        # Target accuracy on Sleep-EDF staging
+  sleep_edf_kappa: null           # Target Cohen's kappa on Sleep-EDF
+  eeg_behavioral_correlation: null  # Target Pearson r for EEG–behavioral alignment
