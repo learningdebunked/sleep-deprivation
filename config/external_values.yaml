@@ -292,11 +292,56 @@ dataset_facts:
     source: "PhysioNet Sleep-EDF Expanded"
     synthetic: false
 
-# ── Proposal targets (to be filled at Stage 3 — Protocol Lock) ───────────────
-# Leave null until experimental design is fixed.
+# ── Proposal targets (locked Stage 3 — Protocol Lock, 2026-10-27) ────────────
+# These are hypothesis thresholds, NOT observed results. synthetic: false (design targets).
 proposal_targets:
-  nhanes_auc_primary: null        # Target AUC on NHANES cognitive classification
-  sleep_edf_accuracy: null        # Target accuracy on Sleep-EDF staging
-  sleep_edf_kappa: null           # Target Cohen's kappa on Sleep-EDF
-  eeg_behavioral_correlation: null  # Target Pearson r for EEG–behavioral alignment
-  eeg_cognitive_classification_auc: null  # Target AUC on EEG NS vs SD classification
+
+  h1_eeg_auc_target:
+    value: 0.85
+    comparator: ">="
+    metric: "AUC-ROC"
+    hypothesis: "H1"
+    task: "Binary NS vs. SD classification"
+    dataset: "OpenNeuro ds004902 (71 participants, 5-fold CV)"
+    rationale: "Standard clinical utility threshold; prior behavioral-only AUC ~0.82-0.85 (Sakal 2024)"
+    synthetic: false
+
+  h2_alignment_pearson_r_target:
+    value: 0.40
+    comparator: ">"
+    metric: "Pearson r"
+    hypothesis: "H2"
+    task: "Cross-modal alignment: LLM embedding vs. Bi-LSTM cognitive state probability"
+    dataset: "NHANES 2013-2014 + OpenNeuro pseudo-label intersection"
+    rationale: "Moderate effect size (Cohen 1988); minimum threshold for meaningful alignment"
+    synthetic: false
+
+  h3_nhanes_auc_target:
+    value: 0.72
+    comparator: ">="
+    metric: "AUC-ROC"
+    hypothesis: "H3"
+    task: "EEG-indexed cognitive decline risk classification from NHANES survey features"
+    dataset: "NHANES 2013-2014 (n~1400, DSST pseudo-labels, 5-fold CV)"
+    rationale: "Matches Sakal et al. 2024 recall/memory prediction AUC (best prior NHANES+cognitive baseline)"
+    synthetic: false
+
+  h4_dsst_r2_target:
+    value: 0.10
+    comparator: ">"
+    metric: "R-squared"
+    hypothesis: "H4"
+    task: "DSST score prediction from NHANES 2013-2014 sleep features (traditional regression)"
+    dataset: "NHANES 2013-2014 SLQ_H + CFQ_H (n~1400)"
+    rationale: "Minimum signal threshold; R2 <= 0.10 indicates sleep features have no predictive value"
+    synthetic: false
+
+  h4_dsst_auc_target:
+    value: 0.65
+    comparator: ">"
+    metric: "AUC-ROC"
+    hypothesis: "H4"
+    task: "Binary DSST low performance classification (< 40th percentile)"
+    dataset: "NHANES 2013-2014 SLQ_H + CFQ_H (n~1400)"
+    rationale: "Minimum useful classification threshold; establishes traditional baseline"
+    synthetic: false
