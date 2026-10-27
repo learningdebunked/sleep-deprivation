@@ -1,13 +1,14 @@
 # external_values.yaml
-# Single source of truth for all published baseline metrics.
+# Single source of truth for all published baseline metrics and dataset facts.
 # Every numeric claim in the manuscript must reference an entry here.
 # DO NOT edit values without updating the source citation.
-# Seeded: Stage 1 Novelty Gate — October 2026
-# synthetic: false (all values sourced from published papers)
+# Seeded Stage 1: October 2026 (published baselines)
+# Updated Stage 2: October 2026 (cohort facts and dataset specifications)
+# synthetic: false (all values sourced from official codebooks and published data descriptors)
 
 meta:
   project: "nhanes-eeg-cogdecline-lstm-llm"
-  stage_seeded: 1
+  stage_seeded: 2
   date_seeded: "2026-10-27"
   synthetic: false
 
@@ -127,6 +128,170 @@ baselines:
     doi: "10.3389/FNHUM.2011.00070"
     notes: "Primary EEG–cognitive alignment target for O4"
 
+# ── Stage 2: Dataset facts — locked from official codebooks ──────────────────
+# Source: NHANES P_SLQ codebook https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/P_SLQ.htm
+# Source: NHANES CFQ_H codebook https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/CFQ_H.htm
+# Source: NHANES SLQ_H codebook https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/SLQ_H.htm
+# Source: Xiang et al. 2024 Scientific Data DOI 10.1038/s41597-024-03268-2 (OpenNeuro ds004902)
+# Source: PhysioNet Sleep-EDF Expanded (Kemp et al. 2000, IEEE-BME 47(9):1185-1194)
+dataset_facts:
+
+  nhanes_p_slq_n_eligible:
+    value: 10195
+    description: "NHANES 2017-March 2020 P_SLQ eligible participants (ages 16+)"
+    source: "NHANES P_SLQ codebook, September 2021"
+    synthetic: false
+
+  nhanes_p_slq_sld012_valid_n:
+    value: 10031
+    description: "P_SLQ SLD012 (derived weekday sleep hours) valid n"
+    source: "NHANES P_SLQ codebook"
+    synthetic: false
+
+  nhanes_p_slq_sld013_valid_n:
+    value: 10007
+    description: "P_SLQ SLD013 (derived weekend sleep hours) valid n"
+    source: "NHANES P_SLQ codebook"
+    synthetic: false
+
+  nhanes_p_slq_slq120_valid_n:
+    value: 10195
+    description: "P_SLQ SLQ120 (daytime sleepiness frequency) valid n — 100% completion"
+    source: "NHANES P_SLQ codebook"
+    synthetic: false
+
+  nhanes_p_slq_slq050_yes_n:
+    value: 2738
+    description: "P_SLQ SLQ050 — ever told doctor trouble sleeping: Yes"
+    source: "NHANES P_SLQ codebook"
+    synthetic: false
+
+  nhanes_cfq_h_n_eligible:
+    value: 1785
+    description: "NHANES 2013-2014 CFQ_H total eligible (ages 60+)"
+    source: "NHANES CFQ_H codebook, March 2017"
+    synthetic: false
+
+  nhanes_cfq_h_cfastat1_n:
+    value: 1638
+    description: "CFQ_H CFASTAT=1 (completed all 3 cognitive tests)"
+    source: "NHANES CFQ_H codebook"
+    synthetic: false
+
+  nhanes_cfq_h_cfdds_valid_n:
+    value: 1592
+    description: "CFQ_H CFDDS (DSST score) valid n; range 0-105"
+    source: "NHANES CFQ_H codebook"
+    synthetic: false
+
+  nhanes_cfq_h_cfdast_valid_n:
+    value: 1661
+    description: "CFQ_H CFDAST (Animal Fluency total score) valid n; range 3-39"
+    source: "NHANES CFQ_H codebook"
+    synthetic: false
+
+  nhanes_cfq_h_cfdcst3_valid_n:
+    value: 1674
+    description: "CFQ_H CFDCST3 (CERAD Trial 3 recall) valid n; range 0-10"
+    source: "NHANES CFQ_H codebook"
+    synthetic: false
+
+  nhanes_cfq_h_cfdcsr_valid_n:
+    value: 1672
+    description: "CFQ_H CFDCSR (CERAD Delayed Recall) valid n; range 0-10"
+    source: "NHANES CFQ_H codebook"
+    synthetic: false
+
+  nhanes_slq_h_n_eligible:
+    value: 6464
+    description: "NHANES 2013-2014 SLQ_H eligible (ages 16+)"
+    source: "NHANES SLQ_H codebook, February 2016"
+    synthetic: false
+
+  nhanes_slq_h_sld010h_valid_n:
+    value: 6454
+    description: "SLQ_H SLD010H (usual weekday sleep hours) valid n; range 2-12+"
+    source: "NHANES SLQ_H codebook"
+    synthetic: false
+
+  openneuro_ds004902_n_participants:
+    value: 71
+    description: "OpenNeuro ds004902 resting-state EEG sleep deprivation — total participants"
+    source: "Xiang et al. 2024, Scientific Data, DOI 10.1038/s41597-024-03268-2"
+    synthetic: false
+
+  openneuro_ds004902_n_sessions:
+    value: 2
+    description: "Sessions per participant: Normal Sleep (NS) and Sleep Deprived (SD)"
+    source: "Xiang et al. 2024, Scientific Data"
+    synthetic: false
+
+  openneuro_ds004902_eeg_channels:
+    value: 61
+    description: "EEG electrode count (Brain Products GmbH, 10-20 system)"
+    source: "Xiang et al. 2024, Scientific Data"
+    synthetic: false
+
+  openneuro_ds004902_sampling_hz:
+    value: 500
+    description: "EEG sampling rate (Hz)"
+    source: "Xiang et al. 2024, Scientific Data"
+    synthetic: false
+
+  openneuro_ds004902_impedance_kohm:
+    value: 5
+    description: "Maximum electrode impedance threshold (kΩ)"
+    source: "Xiang et al. 2024, Scientific Data"
+    synthetic: false
+
+  openneuro_ds004902_n_files:
+    value: 1228
+    description: "Total files in dataset archive"
+    source: "OpenNeuro ds004902 v1.0.8"
+    synthetic: false
+
+  openneuro_ds004902_size_gb:
+    value: 8.29
+    description: "Total dataset size (GB)"
+    source: "OpenNeuro ds004902 v1.0.8"
+    synthetic: false
+
+  sleep_edf_expanded_n_recordings:
+    value: 197
+    description: "Sleep-EDF Expanded total whole-night PSG recordings"
+    source: "PhysioNet / Kemp et al. 2000, IEEE-BME 47(9):1185-1194"
+    synthetic: false
+
+  sleep_edf_expanded_sc_n:
+    value: 153
+    description: "Sleep-EDF Expanded SC (Cassette) study recordings — healthy subjects 25-101 yrs"
+    source: "PhysioNet Sleep-EDF Expanded"
+    synthetic: false
+
+  sleep_edf_expanded_st_n:
+    value: 44
+    description: "Sleep-EDF Expanded ST (Telemetry) study recordings — 22 subjects with mild insomnia"
+    source: "PhysioNet Sleep-EDF Expanded"
+    synthetic: false
+
+  sleep_edf_eeg_sampling_hz:
+    value: 100
+    description: "Sleep-EDF EEG sampling rate (Hz) — both SC and ST studies"
+    source: "PhysioNet / Kemp et al. 2000"
+    synthetic: false
+
+  sleep_edf_eeg_channels:
+    value: "Fpz-Cz, Pz-Oz"
+    description: "Sleep-EDF EEG channel derivations used for sleep staging"
+    source: "PhysioNet / Kemp et al. 2000"
+    synthetic: false
+
+  sleep_edf_eog_sampling_hz:
+    value: 100
+    description: "Sleep-EDF horizontal EOG sampling rate (Hz)"
+    source: "PhysioNet Sleep-EDF Expanded"
+    synthetic: false
+
 # ── Proposal targets (to be filled at Stage 3 — Protocol Lock) ───────────────
 # Leave null until experimental design is fixed.
 proposal_targets:
@@ -134,3 +299,4 @@ proposal_targets:
   sleep_edf_accuracy: null        # Target accuracy on Sleep-EDF staging
   sleep_edf_kappa: null           # Target Cohen's kappa on Sleep-EDF
   eeg_behavioral_correlation: null  # Target Pearson r for EEG–behavioral alignment
+  eeg_cognitive_classification_auc: null  # Target AUC on EEG NS vs SD classification
