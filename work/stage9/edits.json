@@ -1,0 +1,131 @@
+[
+  {
+    "op": "replace",
+    "anchor": "We have presented what is, to our knowledge, the first unified",
+    "old_text": "We have presented the first unified",
+    "text": "We have presented what is, to our knowledge, the first unified",
+    "style_ref": "Normal",
+    "in_table": false,
+    "shards": ["text-paragraphs.md", "document-core.md"]
+  },
+  {
+    "op": "replace",
+    "anchor": "we establish, to our knowledge, the first integrated",
+    "old_text": "we establish the first integrated",
+    "text": "we establish, to our knowledge, the first integrated",
+    "style_ref": "Normal",
+    "in_table": false,
+    "shards": ["text-paragraphs.md", "document-core.md"]
+  },
+  {
+    "op": "replace",
+    "anchor": "To our knowledge, we present the first unified",
+    "old_text": "We present the first unified",
+    "text": "To our knowledge, we present the first unified",
+    "style_ref": "Normal",
+    "in_table": false,
+    "shards": ["text-paragraphs.md", "document-core.md"]
+  },
+  {
+    "op": "replace",
+    "anchor": "AUC=0.5144 < 0.80",
+    "old_text": "AUC=0.5144 < 0.72",
+    "text": "AUC=0.5144 < 0.80",
+    "style_ref": "Normal",
+    "in_table": false,
+    "shards": ["text-paragraphs.md", "document-core.md"]
+  },
+  {
+    "op": "replace",
+    "anchor": "AUC=0.5144 \u226a 0.80",
+    "old_text": "AUC=0.5144 \u226a 0.72",
+    "text": "AUC=0.5144 \u226a 0.80",
+    "style_ref": "Normal",
+    "in_table": false,
+    "shards": ["text-paragraphs.md", "document-core.md"]
+  },
+  {
+    "op": "replace",
+    "anchor": "Threshold: \u22650.80 (H3)",
+    "old_text": "Threshold: \u22650.72 (H3)",
+    "text": "Threshold: \u22650.80 (H3)",
+    "style_ref": "Normal",
+    "in_table": false,
+    "shards": ["text-paragraphs.md", "document-core.md"]
+  },
+  {
+    "op": "replace",
+    "anchor": "set to exceed this baseline",
+    "old_text": "calibrated to this baseline",
+    "text": "set to exceed this baseline",
+    "style_ref": "Normal",
+    "in_table": false,
+    "shards": ["text-paragraphs.md", "document-core.md"]
+  },
+  {
+    "op": "replace",
+    "anchor": "AUC \u2265 0.80",
+    "old_text": "AUC \u2265 0.72",
+    "text": "AUC \u2265 0.80",
+    "style_ref": "Normal",
+    "in_table": false,
+    "shards": ["text-paragraphs.md", "document-core.md"]
+  },
+  {
+    "op": "replace",
+    "anchor": "AUC\u22650.80",
+    "old_text": "AUC\u22650.72",
+    "text": "AUC\u22650.80",
+    "style_ref": "Normal",
+    "in_table": false,
+    "shards": ["text-paragraphs.md", "document-core.md"]
+  },
+  {
+    "op": "insert",
+    "anchor": "Appendix A: Figures (Synthetic Data)",
+    "text": "Funding",
+    "style_ref": "Heading 2",
+    "in_table": false,
+    "shards": ["text-paragraphs.md", "document-core.md"]
+  },
+  {
+    "op": "insert",
+    "anchor": "Appendix A: Figures (Synthetic Data)",
+    "text": "This work received no external funding.",
+    "style_ref": "Normal",
+    "in_table": false,
+    "shards": ["text-paragraphs.md", "document-core.md"]
+  },
+  {
+    "op": "insert",
+    "anchor": "Appendix A: Figures (Synthetic Data)",
+    "text": "Use of Generative AI and AI-assisted Technologies",
+    "style_ref": "Heading 2",
+    "in_table": false,
+    "shards": ["text-paragraphs.md", "document-core.md"]
+  },
+  {
+    "op": "insert",
+    "anchor": "Appendix A: Figures (Synthetic Data)",
+    "text": "During the preparation of this manuscript, the authors used AI-assisted writing tools (SciSpace) for text drafting and editing. All AI-generated content was reviewed, edited, and verified by the authors. The authors take full responsibility for the accuracy and integrity of the published work.",
+    "style_ref": "Normal",
+    "in_table": false,
+    "shards": ["text-paragraphs.md", "document-core.md"]
+  },
+  {
+    "op": "insert",
+    "anchor": "Appendix A: Figures (Synthetic Data)",
+    "text": "Code Availability",
+    "style_ref": "Heading 2",
+    "in_table": false,
+    "shards": ["text-paragraphs.md", "document-core.md"]
+  },
+  {
+    "op": "insert",
+    "anchor": "Appendix A: Figures (Synthetic Data)",
+    "text": "All implementation code for this framework is available at https://github.com/learningdebunked/sleep-deprivation. Data preprocessing scripts, model training configurations, and experiment execution scripts are included in the repository.",
+    "style_ref": "Normal",
+    "in_table": false,
+    "shards": ["text-paragraphs.md", "document-core.md"]
+  }
+]

@@ -88,18 +88,27 @@ nhanes-eeg-cogdecline-lstm-llm/
 
 ## Pipeline Stages
 
-| Stage | Name | Status |
-|-------|------|--------|
-| **1** | Novelty Gate | ✅ PASS |
-| 1B | Significance & Q1 Journal Strategy | ⏳ Next |
-| 2 | Data Audit & Cohort Definition | ⏸ Pending |
-| 3 | Protocol Lock | ⏸ Pending |
-| 4 | Baseline Implementation | ⏸ Pending |
-| 5 | Model Development | ⏸ Pending |
-| 6 | Evaluation & Ablation | ⏸ Pending |
-| 7 | Manuscript Draft | ⏸ Pending |
-| 8 | Internal Review | ⏸ Pending |
-| 9 | Submission | ⏸ Pending |
+| Stage | Name | Status | Commit |
+|-------|------|--------|--------|
+| **1** | Novelty Gate | ✅ COMPLETE | `94fc426` |
+| **1B** | Significance & Q1 Journal Strategy | ✅ COMPLETE | `b359df9` |
+| **2** | Data Audit & Cohort Definition | ✅ COMPLETE | `6c891b1` |
+| **3** | Protocol Lock | ✅ COMPLETE | `0935030` |
+| **4** | Baseline Implementation | ✅ COMPLETE | `5affd5e` |
+| **5** | Model Development & Experiment Runs | ✅ COMPLETE | `2f9f0cf` |
+| **6** | Evaluation, Figures & Results Analysis | ✅ COMPLETE | `3452707` |
+| **7** | Manuscript Draft (JBHI format) | ✅ COMPLETE | `51e73b0` |
+| **8** | Internal Peer Review | ✅ COMPLETE — Invite to Resubmit | `9b3c7f0` |
+| **9** | Final Submission Package | ✅ COMPLETE | Stage 9 commit |
+
+### Stage 9 Deliverables
+
+| File | Description |
+|------|-------------|
+| `docs/stage9_cover_letter.docx` | Cover letter to JBHI Editor-in-Chief |
+| `docs/stage9_author_response.docx` | Point-by-point response to all 15 reviewer issues (4 Blocking, 6 Major, 5 Minor) |
+| `docs/stage9_revised_manuscript.docx` | Tracked-change revision: AUC threshold ≥0.72→≥0.80, novelty hedges, Funding/AI/Code sections |
+| `docs/stage9_submission_checklist.md` | Full submission checklist with verification results |
 
 ---
 
@@ -116,7 +125,7 @@ pip install -r requirements.txt
 
 ## Citation
 
-> Citation block will be added upon journal submission (Stage 9).
+> Submitted to IEEE Journal of Biomedical and Health Informatics (JBHI) — Stage 9 (2026-10-28).
 
 ```bibtex
 @article{tbd,
