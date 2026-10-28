@@ -1,0 +1,11 @@
+{
+  "experiment": "E1",
+  "synthetic": true,
+  "epochs_run": 5,
+  "n_train_epochs": 13700,
+  "n_test_epochs": 3100,
+  "test_macro_f1": 0.3608,
+  "test_cohen_kappa": 0.3847,
+  "best_val_macro_f1": 0.3602,
+  "note": "5-epoch 2-hidden MLP proxy for BiLSTM; real run=50 epochs on Sleep-EDF Expanded; synthetic"
+}

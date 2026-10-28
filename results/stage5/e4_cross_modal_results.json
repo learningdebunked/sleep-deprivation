@@ -1,0 +1,29 @@
+{
+  "experiment": "E4_E5",
+  "synthetic": true,
+  "E4": {
+    "pearson_r_mean": 0.3086,
+    "pearson_p_approx": 0.001,
+    "nt_xent_proxy_loss": 0.8632,
+    "n_subjects": 71,
+    "embed_dim": 32,
+    "H2_threshold": 0.4,
+    "H2_verdict": "FAIL"
+  },
+  "E5": {
+    "cv_auc_mean": 0.5144,
+    "cv_auc_std": 0.0255,
+    "fold_aucs": [
+      0.5255,
+      0.4676,
+      0.526,
+      0.5102,
+      0.5425
+    ],
+    "n_subjects": 1592,
+    "pseudo_label_threshold_dsst": 51.0,
+    "H3_threshold": 0.72,
+    "H3_verdict": "FAIL"
+  },
+  "note": "E4: Procrustes cross-modal, random projections to 32-dim; E5: LR 5-fold; synthetic"
+}

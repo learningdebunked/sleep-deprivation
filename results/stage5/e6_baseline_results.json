@@ -1,0 +1,24 @@
+{
+  "experiment": "E6",
+  "synthetic": true,
+  "ridge_cv_r2_mean": -9.5244,
+  "ridge_cv_r2_std": 0.4815,
+  "ridge_cv_mse_mean": 3378.93,
+  "gbm_cv_auc_mean": 0.4842,
+  "gbm_cv_auc_std": 0.0356,
+  "fold_gbm_aucs": [
+    0.5119,
+    0.4735,
+    0.4191,
+    0.5022,
+    0.5144
+  ],
+  "n_subjects": 1592,
+  "n_sleep_features": 9,
+  "H4_r2_threshold": 0.1,
+  "H4_auc_threshold": 0.65,
+  "H4_r2_pass": false,
+  "H4_auc_pass": false,
+  "H4_verdict": "FAIL",
+  "note": "Ridge regression + stump-GBM on 9 NHANES sleep features, DSST target, 5-fold CV; synthetic"
+}

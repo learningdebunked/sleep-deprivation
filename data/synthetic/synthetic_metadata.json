@@ -1,0 +1,24 @@
+{
+  "synthetic": true,
+  "seed": 42,
+  "source_statistics": "external_values.yaml (dataset_facts section)",
+  "note": "All EEG features are synthetic. NHANES demographics/sleep distributions match published NHANES 2013-2014 and 2017-2020 statistics. Real NHANES XPT downloads blocked by CDC web server; synthetic data generated from locked external_values.yaml statistics.",
+  "datasets": {
+    "nhanes_2013_2014": {
+      "n": 1592,
+      "real_n_locked": 1592
+    },
+    "nhanes_2017_2020": {
+      "n": 10031,
+      "real_n_locked": 10031
+    },
+    "openneuro": {
+      "n_subjects": 71,
+      "real_n_locked": 71
+    },
+    "sleep_edf": {
+      "n_recordings": 197,
+      "real_n_locked": 197
+    }
+  }
+}

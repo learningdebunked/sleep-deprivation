@@ -345,3 +345,57 @@ proposal_targets:
     dataset: "NHANES 2013-2014 SLQ_H + CFQ_H (n~1400)"
     rationale: "Minimum useful classification threshold; establishes traditional baseline"
     synthetic: false
+
+# ── Stage 5: Experiment Results (synthetic data, flagged synthetic=true) ──────
+experiment_results:
+
+  e1_sleep_edf_staging:
+    experiment: "E1"
+    description: "5-class sleep-stage classification on synthetic Sleep-EDF data"
+    macro_f1: 0.3608
+    kappa: 0.3847
+    synthetic: true
+    note: "Pure-numpy GBM proxy on synthetic EEG features; real validation requires Sleep-EDF cassette recordings"
+
+  e2_openneuro_ns_sd:
+    experiment: "E2"
+    description: "Binary NS vs. SD classification on synthetic OpenNeuro EEG data (5-fold CV)"
+    cv_auc_mean: 1.0000
+    cv_auc_std: 0.0000
+    hypothesis: "H1"
+    verdict: "PASS"
+    synthetic: true
+    note: "AUC=1.0 is a synthetic-data artifact — generator created perfectly separated NS/SD feature distributions; not a real model performance claim"
+
+  e4_cross_modal_alignment:
+    experiment: "E4"
+    description: "Pearson correlation between LLM sleep embeddings and EEG spectral power features"
+    pearson_r_mean: 0.3086
+    threshold: 0.40
+    hypothesis: "H2"
+    verdict: "FAIL"
+    synthetic: true
+    note: "FAIL due to uncorrelated synthetic data; expected with independently generated features"
+
+  e5_nhanes_pseudo_label_transfer:
+    experiment: "E5"
+    description: "NHANES 2013-2014 pseudo-label AUC using cross-modal framework (5-fold CV)"
+    cv_auc_mean: 0.5144
+    cv_auc_std: 0.0255
+    threshold: 0.72
+    hypothesis: "H3"
+    verdict: "FAIL"
+    synthetic: true
+    note: "FAIL due to lack of signal in synthetic NHANES features; real validation requires NHANES XPT downloads"
+
+  e6_traditional_baseline:
+    experiment: "E6"
+    description: "Traditional ML baselines: Ridge regression (DSST R2) and GBM classification (AUC)"
+    ridge_cv_r2_mean: -9.5244
+    gbm_cv_auc_mean: 0.4842
+    r2_threshold: 0.10
+    auc_threshold: 0.65
+    hypothesis: "H4"
+    verdict: "FAIL"
+    synthetic: true
+    note: "Ridge R2 << 0 because synthetic DSST scores are independent of sleep features; GBM AUC~0.5 = near-random; real validation requires actual NHANES data"

@@ -1,0 +1,19 @@
+{
+  "experiment": "E2",
+  "synthetic": true,
+  "n_subjects": 71,
+  "n_folds": 5,
+  "cv_auc_mean": 1.0,
+  "cv_auc_std": 0.0,
+  "cv_f1_mean": 1.0,
+  "fold_aucs": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+  ],
+  "H1_threshold": 0.85,
+  "H1_verdict": "PASS",
+  "note": "Logistic regression on epoch-level features; subject-level AUC via mean-pool; 5-fold CV; synthetic"
+}
