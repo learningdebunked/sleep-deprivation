@@ -64,25 +64,7 @@ All proposal targets must meet or exceed these values. Full details in [`config/
 
 ## Repository Structure
 
-```
-nhanes-eeg-cogdecline-lstm-llm/
-├── README.md
-├── LICENSE
-├── .gitignore
-├── config/
-│   └── external_values.yaml       # Published baselines — single source of truth
-├── docs/
-│   ├── stage1_novelty_memo.docx   # Stage 1 Gate: Novelty Memo (PASS)
-│   └── novelty_gap_analysis.md    # Full literature gap analysis
-├── scripts/
-│   └── build_docs/
-│       ├── stage1_phase1.py       # Builds Stage 1 docx (title + Sections 1-2)
-│       └── stage1_phase2.py       # Builds Stage 1 docx (Sections 3-7)
-├── src/                           # Model code (populated from Stage 4)
-├── notebooks/                     # Exploratory analysis (populated from Stage 4)
-└── data/
-    └── README.md                  # Dataset access instructions
-```
+See **How to Run → Section 5** below for the full annotated directory tree.
 
 ---
 
@@ -114,12 +96,159 @@ nhanes-eeg-cogdecline-lstm-llm/
 
 ## Requirements
 
-> Code dependencies will be listed here from Stage 4 onward.
+Python ≥ 3.10 is required. Install all dependencies with:
 
 ```bash
-# Placeholder — to be populated at Stage 4 (Protocol Lock)
 pip install -r requirements.txt
 ```
+
+Key packages: `torch>=2.1`, `transformers>=4.38`, `mne>=1.6`, `scikit-learn>=1.4`, `numpy`, `pandas`, `xgboost`, `shap`, `matplotlib`, `seaborn`.
+
+---
+
+## How to Run
+
+### 1 — Clone and install
+
+```bash
+git clone https://github.com/learningdebunked/sleep-deprivation.git
+cd sleep-deprivation
+pip install -r requirements.txt
+```
+
+---
+
+### 2 — Data setup
+
+The code supports two modes: **synthetic** (no downloads needed — for pipeline validation) and **real data** (required for scientific results).
+
+#### 2a — Synthetic mode (default, runs immediately)
+
+Generate the four synthetic datasets used for pipeline validation:
+
+```bash
+python src/data/synthetic_generator.py
+```
+
+This writes four files to `data/synthetic/`:
+
+| File | Description |
+|------|-------------|
+| `nhanes_2013_2014.csv` | 1,592 rows — NHANES CFQ/SLQ variables + DSST pseudo-labels |
+| `nhanes_2017_2020.csv` | 10,031 rows — sleep-only columns (SLD012) |
+| `openneuro_eeg.npz` | 71 subjects × 200 epochs × 34 EEG features |
+| `sleep_edf_eeg.npz` | 197 recordings × 100 epochs × 34 EEG features |
+
+> ⚠️ All synthetic files carry `synthetic: true` in their sidecar JSON. Results from synthetic data are for pipeline validation only and do not constitute scientific evidence.
+
+#### 2b — Real data (required for valid science)
+
+Download each dataset independently and place it under `data/`:
+
+| Dataset | Source | Path |
+|---------|--------|------|
+| NHANES 2013–2014 (CFQ_H, SLQ_H) | [CDC NCHS](https://wwwn.cdc.gov/nchs/nhanes/continuousnhanes/default.aspx?BeginYear=2013) | `data/nhanes/2013_2014/` |
+| NHANES 2017–2020 (P_SLQ) | [CDC NCHS](https://wwwn.cdc.gov/nchs/nhanes/continuousnhanes/default.aspx?BeginYear=2017) | `data/nhanes/2017_2020/` |
+| Sleep-EDF Expanded | [PhysioNet](https://physionet.org/content/sleep-edfx/) | `data/sleep_edf/` |
+| OpenNeuro ds004902 | [OpenNeuro](https://openneuro.org/datasets/ds004902) | `data/openneuro/ds004902/` |
+
+---
+
+### 3 — Run all experiments (single command)
+
+With synthetic data generated (Step 2a):
+
+```bash
+python scripts/run_experiments/run_all_experiments.py
+```
+
+Expected runtime: **< 90 seconds on CPU**. Results are saved to `results/stage5/`:
+
+| Output file | Contents |
+|-------------|----------|
+| `experiment_summary.json` | All hypothesis verdicts + key metrics |
+| `e1_sleep_edf_results.json` | E1 macro-F1, Cohen's κ |
+| `e2_openneuro_results.json` | E2 AUC, accuracy |
+| `e4_cross_modal_results.json` | E4 Pearson r; E5 AUC |
+| `e6_baseline_results.json` | E6 Ridge R², GBM AUC |
+
+#### Run individual experiments
+
+```bash
+python scripts/run_experiments/run_e1_sleep_edf.py      # E1: Sleep-EDF staging (BiLSTM)
+python scripts/run_experiments/run_e2_openneuro.py      # E2: Binary SD classification (H1)
+python scripts/run_experiments/run_e4_e5_crossmodal.py  # E4: Cross-modal alignment (H2) + E5: NHANES transfer (H3)
+python scripts/run_experiments/run_e6_baseline.py       # E6: Ridge + GBM baselines (H4)
+```
+
+---
+
+### 4 — Full training pipeline (real data)
+
+Once real datasets are in place, run the three training stages sequentially:
+
+```bash
+# Stage 1 — BiLSTM EEG pre-training on Sleep-EDF
+python src/training/train_stage1.py
+
+# Stage 2 — Cross-modal alignment (NT-Xent, NHANES ↔ EEG bridge)
+python src/training/train_stage2.py
+
+# Stage 3 — End-to-end fine-tuning + NHANES pseudo-label transfer
+python src/training/train_stage3.py
+```
+
+Checkpoints are saved to `results/checkpoints/`. Training logs use `src/utils/logging_utils.py`.
+
+---
+
+### 5 — Repository structure (full)
+
+```
+nhanes-eeg-cogdecline-lstm-llm/
+├── config/
+│   └── external_values.yaml          # Published baselines — single source of truth
+├── data/
+│   ├── synthetic/                     # Auto-generated (Step 2a)
+│   ├── nhanes/                        # Download manually (Step 2b)
+│   ├── sleep_edf/                     # Download manually (Step 2b)
+│   └── openneuro/                     # Download manually (Step 2b)
+├── docs/                              # All stage deliverables (.docx, .md, .pdf)
+├── results/
+│   ├── stage5/                        # Experiment JSON outputs
+│   ├── figures/                       # Publication figures (300 DPI)
+│   └── checkpoints/                   # Model checkpoints (training stages 1–3)
+├── scripts/
+│   ├── run_experiments/               # Standalone experiment runners
+│   └── build_docs/                    # Document build scripts
+├── src/
+│   ├── data/                          # Dataset loaders + synthetic generator
+│   ├── features/                      # EEG + NHANES feature extraction
+│   ├── models/                        # BiLSTM, LLM encoder, cross-modal bridge
+│   ├── training/                      # Training stages 1–3
+│   ├── evaluation/                    # Metrics (AUC, F1, κ, Pearson r)
+│   ├── baselines/                     # Ridge, GBM baselines
+│   └── utils/                         # Seed, checkpointing, logging
+└── requirements.txt
+```
+
+---
+
+## Experimental Results (Synthetic Data — Pipeline Validation Only)
+
+> ⚠️ All results below are from **synthetic data** and serve only to confirm the pipeline executes correctly. They do not represent real model performance. Hypotheses remain unvalidated pending real data.
+
+| Exp | Task | Metric | Result | Hypothesis | Verdict |
+|-----|------|--------|--------|------------|---------|
+| **E1** | Sleep-EDF 5-class staging (BiLSTM) | Macro-F1 | 0.3608 | — (pre-training) | Below benchmark (Almutairi κ=0.83) |
+| **E1** | Sleep-EDF 5-class staging (BiLSTM) | Cohen's κ | 0.3847 | — | Below benchmark |
+| **E2** | Binary SD classification (H1) | AUC | 1.0000 | H1: AUC ≥ 0.85 | PASS *(synthetic artifact — not valid)* |
+| **E4** | Cross-modal alignment (H2) | Pearson r | 0.3086 | H2: r > 0.40 | **FAIL** |
+| **E5** | NHANES pseudo-label transfer (H3) | AUC | 0.5144 ± 0.0255 | H3: AUC ≥ 0.80 | **FAIL** |
+| **E6** | Ridge regression baseline (H4) | R² | −9.5244 | H4: R² > 0.10 | **FAIL** |
+| **E6** | GBM classification baseline (H4) | AUC | 0.4842 | H4: AUC > 0.65 | **FAIL** |
+
+Full results JSON: [`results/stage5/experiment_summary.json`](results/stage5/experiment_summary.json)
 
 ---
 
