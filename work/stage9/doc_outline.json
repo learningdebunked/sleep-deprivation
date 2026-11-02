@@ -1,0 +1,1312 @@
+{
+ "_doc": {
+  "purpose": "Navigation index for doc_style.json + doc_content.txt. Read this file FIRST — the style file is usually too large to read whole.",
+  "workflow": [
+   "1. scan elements[] here (or grep doc_content.txt) to find the target idx",
+   "2. fetch that one entry: jq '.elements[IDX]' doc_style.json",
+   "3. any *_ref integer in it -> jq '.xmlStrings[N]' doc_style.json for the verbatim XML",
+   "4. full text of the element: grep -A50 '\\[idx=IDX\\]' doc_content.txt"
+  ],
+  "row_fields": "idx/type/style/anchor always; heading=level, list=numFmt/ilvl, dims=RxC for tables, sdt=in content control, has=[extras present on the full entry]"
+ },
+ "sourceFile": "/home/sandbox/nhanes-eeg-cogdecline-lstm-llm/docs/stage7_manuscript.docx",
+ "totalElements": 161,
+ "warnings": [],
+ "coreProperties": {
+  "revision": "3",
+  "modified": "2026-10-28T05:47:32Z",
+  "application": "ONLYOFFICE/9.4.0.130"
+ },
+ "bodyDefault": {
+  "sizeHalfPt": 22,
+  "font": "Arial"
+ },
+ "sections": [
+  {
+   "elementRange": [
+    0,
+    160
+   ],
+   "numCols": 1,
+   "breakType": "nextPage"
+  }
+ ],
+ "headings": [
+  {
+   "idx": 6,
+   "level": 1,
+   "text": "Abstract"
+  },
+  {
+   "idx": 14,
+   "level": 1,
+   "text": "1. Introduction"
+  },
+  {
+   "idx": 21,
+   "level": 1,
+   "text": "2. Related Work"
+  },
+  {
+   "idx": 22,
+   "level": 2,
+   "text": "2.1 Sleep and Cognitive Decline in Population Studies"
+  },
+  {
+   "idx": 24,
+   "level": 2,
+   "text": "2.2 EEG-Based Sleep Staging and Cognitive State Prediction"
+  },
+  {
+   "idx": 26,
+   "level": 2,
+   "text": "2.3 Large Language Models for Structured Health Data"
+  },
+  {
+   "idx": 28,
+   "level": 2,
+   "text": "2.4 Cross-Modal Learning in Biomedical Applications"
+  },
+  {
+   "idx": 30,
+   "level": 3,
+   "text": "Gap Statement"
+  },
+  {
+   "idx": 33,
+   "level": 1,
+   "text": "3. Methods"
+  },
+  {
+   "idx": 34,
+   "level": 2,
+   "text": "3.1 Data Sources and Preprocessing"
+  },
+  {
+   "idx": 35,
+   "level": 3,
+   "text": "3.1.1 NHANES 2017–March 2020 (Inference Cohort)"
+  },
+  {
+   "idx": 37,
+   "level": 3,
+   "text": "3.1.2 NHANES 2013–2014 (Pseudo-Label Training Cohort)"
+  },
+  {
+   "idx": 39,
+   "level": 3,
+   "text": "3.1.3 OpenNeuro ds004902 (EEG Fine-Tuning Dataset)"
+  },
+  {
+   "idx": 41,
+   "level": 3,
+   "text": "3.1.4 Sleep-EDF Expanded (EEG Pre-Training Dataset)"
+  },
+  {
+   "idx": 43,
+   "level": 2,
+   "text": "3.2 Architecture Overview"
+  },
+  {
+   "idx": 45,
+   "level": 2,
+   "text": "3.3 Component 1: Bi-LSTM EEG Encoder"
+  },
+  {
+   "idx": 48,
+   "level": 2,
+   "text": "3.4 Component 2: LLM Sleep-Survey Encoder"
+  },
+  {
+   "idx": 50,
+   "level": 2,
+   "text": "3.5 Component 3: Cross-Modal Contrastive Bridge"
+  },
+  {
+   "idx": 52,
+   "level": 2,
+   "text": "3.6 Pseudo-Label Generation from DSST Scores"
+  },
+  {
+   "idx": 54,
+   "level": 2,
+   "text": "3.7 Training Protocol"
+  },
+  {
+   "idx": 56,
+   "level": 2,
+   "text": "3.8 Evaluation Metrics and Hypotheses"
+  },
+  {
+   "idx": 58,
+   "level": 1,
+   "text": "4. Experiments"
+  },
+  {
+   "idx": 59,
+   "level": 2,
+   "text": "4.1 Experiment E1: Sleep-EDF Pre-Training"
+  },
+  {
+   "idx": 61,
+   "level": 2,
+   "text": "4.2 Experiment E2: OpenNeuro Binary Fine-Tuning (H1)"
+  },
+  {
+   "idx": 63,
+   "level": 2,
+   "text": "4.3 Experiment E4: Cross-Modal Alignment Validation (H2)"
+  },
+  {
+   "idx": 65,
+   "level": 2,
+   "text": "4.4 Experiment E5: NHANES Pseudo-Label Transfer (H3)"
+  },
+  {
+   "idx": 67,
+   "level": 2,
+   "text": "4.5 Experiment E6: Traditional Baseline Comparison (H4)"
+  },
+  {
+   "idx": 70,
+   "level": 1,
+   "text": "5. Results"
+  },
+  {
+   "idx": 73,
+   "level": 2,
+   "text": "5.1 Sleep Staging Pre-Training (E1)"
+  },
+  {
+   "idx": 78,
+   "level": 2,
+   "text": "5.2 Binary Sleep Deprivation Classification (E2, H1)"
+  },
+  {
+   "idx": 82,
+   "level": 2,
+   "text": "5.3 Cross-Modal Embedding Alignment (E4, H2)"
+  },
+  {
+   "idx": 85,
+   "level": 2,
+   "text": "5.4 Cognitive Decline Prediction on NHANES (E5, H3)"
+  },
+  {
+   "idx": 89,
+   "level": 2,
+   "text": "5.5 Traditional Baseline Comparison (E6, H4)"
+  },
+  {
+   "idx": 93,
+   "level": 3,
+   "text": "Hypothesis Summary"
+  },
+  {
+   "idx": 96,
+   "level": 1,
+   "text": "6. Discussion"
+  },
+  {
+   "idx": 97,
+   "level": 2,
+   "text": "6.1 Interpretation of Synthetic Results"
+  },
+  {
+   "idx": 99,
+   "level": 2,
+   "text": "6.2 Comparison with Published Benchmarks"
+  },
+  {
+   "idx": 101,
+   "level": 2,
+   "text": "6.3 Architectural Design Rationale"
+  },
+  {
+   "idx": 103,
+   "level": 2,
+   "text": "6.4 Limitations and Real-World Validation Requirements"
+  },
+  {
+   "idx": 111,
+   "level": 3,
+   "text": "6.4.7 Seven-Week Real-World Validation Roadmap"
+  },
+  {
+   "idx": 113,
+   "level": 2,
+   "text": "6.5 Ethical Considerations"
+  },
+  {
+   "idx": 115,
+   "level": 2,
+   "text": "6.6 Future Directions"
+  },
+  {
+   "idx": 118,
+   "level": 1,
+   "text": "7. Conclusion"
+  },
+  {
+   "idx": 123,
+   "level": 1,
+   "text": "References"
+  },
+  {
+   "idx": 135,
+   "level": 2,
+   "text": "Acknowledgments"
+  },
+  {
+   "idx": 137,
+   "level": 2,
+   "text": "Data Availability"
+  },
+  {
+   "idx": 139,
+   "level": 2,
+   "text": "Conflict of Interest"
+  },
+  {
+   "idx": 142,
+   "level": 1,
+   "text": "Appendix A: Figures (Synthetic Data)"
+  }
+ ],
+ "counts": {
+  "tables": 0,
+  "footnotes": 0,
+  "endnotes": 0,
+  "comments": 0,
+  "headerFooterParts": 0,
+  "media": 4
+ },
+ "elements": [
+  {
+   "idx": 0,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": ""
+  },
+  {
+   "idx": 1,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "From Population Surveys to Neural Signals: A Hybrid LSTM–LLM Framework for Predi"
+  },
+  {
+   "idx": 2,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "Submitted to: IEEE Journal of Biomedical and Health Informatics (JBHI)"
+  },
+  {
+   "idx": 3,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "Authors: [To be filled upon real data validation]"
+  },
+  {
+   "idx": 4,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "⚠ IMPORTANT: All experimental results in this manuscript are derived from SYNTHE"
+  },
+  {
+   "idx": 5,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": ""
+  },
+  {
+   "idx": 6,
+   "type": "paragraph",
+   "style": "Heading 1",
+   "anchor": "Abstract",
+   "heading": 1
+  },
+  {
+   "idx": 7,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "Background: Sleep disturbances are strongly associated with cognitive decline in"
+  },
+  {
+   "idx": 8,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "Objective: We propose a hybrid deep-learning framework that bridges population-s"
+  },
+  {
+   "idx": 9,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "Methods: Our architecture comprises three components: (1) a bidirectional LSTM ("
+  },
+  {
+   "idx": 10,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "Results [SYNTHETIC DATA ONLY]: All reported results are from synthetic data and "
+  },
+  {
+   "idx": 11,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "Conclusion: We present the first unified framework integrating population sleep "
+  },
+  {
+   "idx": 12,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "Index Terms: Cognitive decline, EEG, NHANES, LSTM, large language models, contra"
+  },
+  {
+   "idx": 13,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": ""
+  },
+  {
+   "idx": 14,
+   "type": "paragraph",
+   "style": "Heading 1",
+   "anchor": "1. Introduction",
+   "heading": 1
+  },
+  {
+   "idx": 15,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "Cognitive decline represents a critical public health challenge in aging populat"
+  },
+  {
+   "idx": 16,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "Recent advances in deep learning have demonstrated the capacity of Long Short-Te"
+  },
+  {
+   "idx": 17,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "We address this gap by proposing a hybrid LSTM–LLM architecture trained on three"
+  },
+  {
+   "idx": 18,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "We formulated four testable hypotheses with pre-registered performance threshold"
+  },
+  {
+   "idx": 19,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "The primary contribution is methodological: we establish the first integrated fr"
+  },
+  {
+   "idx": 20,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": ""
+  },
+  {
+   "idx": 21,
+   "type": "paragraph",
+   "style": "Heading 1",
+   "anchor": "2. Related Work",
+   "heading": 1
+  },
+  {
+   "idx": 22,
+   "type": "paragraph",
+   "style": "Heading 2",
+   "anchor": "2.1 Sleep and Cognitive Decline in Population Studies",
+   "heading": 2
+  },
+  {
+   "idx": 23,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "Epidemiological research has consistently linked sleep disturbances to accelerat"
+  },
+  {
+   "idx": 24,
+   "type": "paragraph",
+   "style": "Heading 2",
+   "anchor": "2.2 EEG-Based Sleep Staging and Cognitive State Prediction",
+   "heading": 2
+  },
+  {
+   "idx": 25,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "Deep learning has revolutionized automated sleep staging from polysomnography (P"
+  },
+  {
+   "idx": 26,
+   "type": "paragraph",
+   "style": "Heading 2",
+   "anchor": "2.3 Large Language Models for Structured Health Data",
+   "heading": 2
+  },
+  {
+   "idx": 27,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "Pre-trained language models have shown promise in encoding structured clinical a"
+  },
+  {
+   "idx": 28,
+   "type": "paragraph",
+   "style": "Heading 2",
+   "anchor": "2.4 Cross-Modal Learning in Biomedical Applications",
+   "heading": 2
+  },
+  {
+   "idx": 29,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "Contrastive learning frameworks, particularly NT-Xent loss, have enabled alignme"
+  },
+  {
+   "idx": 30,
+   "type": "paragraph",
+   "style": "Heading 3",
+   "anchor": "Gap Statement",
+   "heading": 3
+  },
+  {
+   "idx": 31,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "No prior study integrates population-survey sleep measures (NHANES) as behaviora"
+  },
+  {
+   "idx": 32,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": ""
+  },
+  {
+   "idx": 33,
+   "type": "paragraph",
+   "style": "Heading 1",
+   "anchor": "3. Methods",
+   "heading": 1
+  },
+  {
+   "idx": 34,
+   "type": "paragraph",
+   "style": "Heading 2",
+   "anchor": "3.1 Data Sources and Preprocessing",
+   "heading": 2
+  },
+  {
+   "idx": 35,
+   "type": "paragraph",
+   "style": "Heading 3",
+   "anchor": "3.1.1 NHANES 2017–March 2020 (Inference Cohort)",
+   "heading": 3
+  },
+  {
+   "idx": 36,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "The NHANES 2017–March 2020 Pre-Pandemic cycle (P_SLQ sleep questionnaire module)"
+  },
+  {
+   "idx": 37,
+   "type": "paragraph",
+   "style": "Heading 3",
+   "anchor": "3.1.2 NHANES 2013–2014 (Pseudo-Label Training Cohort)",
+   "heading": 3
+  },
+  {
+   "idx": 38,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "The NHANES 2013–2014 cycle (CFQ_H cognitive function module and SLQ_H sleep ques"
+  },
+  {
+   "idx": 39,
+   "type": "paragraph",
+   "style": "Heading 3",
+   "anchor": "3.1.3 OpenNeuro ds004902 (EEG Fine-Tuning Dataset)",
+   "heading": 3
+  },
+  {
+   "idx": 40,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "OpenNeuro ds004902 comprises resting-state EEG from n=71 participants across two"
+  },
+  {
+   "idx": 41,
+   "type": "paragraph",
+   "style": "Heading 3",
+   "anchor": "3.1.4 Sleep-EDF Expanded (EEG Pre-Training Dataset)",
+   "heading": 3
+  },
+  {
+   "idx": 42,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "Sleep-EDF Expanded contains n=197 whole-night PSG recordings (153 SC + 44 ST) at"
+  },
+  {
+   "idx": 43,
+   "type": "paragraph",
+   "style": "Heading 2",
+   "anchor": "3.2 Architecture Overview",
+   "heading": 2
+  },
+  {
+   "idx": 44,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "Our framework comprises three interconnected components: (1) a Bi-LSTM EEG Encod"
+  },
+  {
+   "idx": 45,
+   "type": "paragraph",
+   "style": "Heading 2",
+   "anchor": "3.3 Component 1: Bi-LSTM EEG Encoder",
+   "heading": 2
+  },
+  {
+   "idx": 46,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "Raw EEG signals from 6 channels (Fz, Cz, Pz, F3, F4, Oz) were segmented into 30-"
+  },
+  {
+   "idx": 47,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "Pre-training on Sleep-EDF Expanded for 5-class staging (categorical cross-entrop"
+  },
+  {
+   "idx": 48,
+   "type": "paragraph",
+   "style": "Heading 2",
+   "anchor": "3.4 Component 2: LLM Sleep-Survey Encoder",
+   "heading": 2
+  },
+  {
+   "idx": 49,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "NHANES sleep survey variables were formatted as structured natural language prom"
+  },
+  {
+   "idx": 50,
+   "type": "paragraph",
+   "style": "Heading 2",
+   "anchor": "3.5 Component 3: Cross-Modal Contrastive Bridge",
+   "heading": 2
+  },
+  {
+   "idx": 51,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "The NT-Xent loss aligns z_EEG and z_survey embeddings in a shared latent space. "
+  },
+  {
+   "idx": 52,
+   "type": "paragraph",
+   "style": "Heading 2",
+   "anchor": "3.6 Pseudo-Label Generation from DSST Scores",
+   "heading": 2
+  },
+  {
+   "idx": 53,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "DSST scores from NHANES 2013–2014 CFQ_H module (n=1,592, range 0–133) were dicho"
+  },
+  {
+   "idx": 54,
+   "type": "paragraph",
+   "style": "Heading 2",
+   "anchor": "3.7 Training Protocol",
+   "heading": 2
+  },
+  {
+   "idx": 55,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "Training proceeded in five stages: (1) EEG Encoder Pre-Training: Sleep-EDF synth"
+  },
+  {
+   "idx": 56,
+   "type": "paragraph",
+   "style": "Heading 2",
+   "anchor": "3.8 Evaluation Metrics and Hypotheses",
+   "heading": 2
+  },
+  {
+   "idx": 57,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "Four pre-registered hypotheses: H1: AUC ≥ 0.85, binary NS vs. SD classification "
+  },
+  {
+   "idx": 58,
+   "type": "paragraph",
+   "style": "Heading 1",
+   "anchor": "4. Experiments",
+   "heading": 1
+  },
+  {
+   "idx": 59,
+   "type": "paragraph",
+   "style": "Heading 2",
+   "anchor": "4.1 Experiment E1: Sleep-EDF Pre-Training",
+   "heading": 2
+  },
+  {
+   "idx": 60,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "Objective: Validate the Bi-LSTM encoder's capacity to learn temporal EEG feature"
+  },
+  {
+   "idx": 61,
+   "type": "paragraph",
+   "style": "Heading 2",
+   "anchor": "4.2 Experiment E2: OpenNeuro Binary Fine-Tuning (H1)",
+   "heading": 2
+  },
+  {
+   "idx": 62,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "Objective: Test H1 (AUC ≥ 0.85 for NS vs. SD classification). Dataset: OpenNeuro"
+  },
+  {
+   "idx": 63,
+   "type": "paragraph",
+   "style": "Heading 2",
+   "anchor": "4.3 Experiment E4: Cross-Modal Alignment Validation (H2)",
+   "heading": 2
+  },
+  {
+   "idx": 64,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "Objective: Test H2 (Pearson r > 0.40, p < 0.05 for EEG-survey embedding correlat"
+  },
+  {
+   "idx": 65,
+   "type": "paragraph",
+   "style": "Heading 2",
+   "anchor": "4.4 Experiment E5: NHANES Pseudo-Label Transfer (H3)",
+   "heading": 2
+  },
+  {
+   "idx": 66,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "Objective: Test H3 (AUC ≥ 0.72 for cognitive decline prediction). Dataset: NHANE"
+  },
+  {
+   "idx": 67,
+   "type": "paragraph",
+   "style": "Heading 2",
+   "anchor": "4.5 Experiment E6: Traditional Baseline Comparison (H4)",
+   "heading": 2
+  },
+  {
+   "idx": 68,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "Objective: Test H4 (R² > 0.10 and AUC > 0.65 for traditional ML). Dataset: NHANE"
+  },
+  {
+   "idx": 69,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": ""
+  },
+  {
+   "idx": 70,
+   "type": "paragraph",
+   "style": "Heading 1",
+   "anchor": "5. Results",
+   "heading": 1
+  },
+  {
+   "idx": 71,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "⚠ CRITICAL CAVEAT: All results in this section are derived from SYNTHETIC DATA g"
+  },
+  {
+   "idx": 72,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": ""
+  },
+  {
+   "idx": 73,
+   "type": "paragraph",
+   "style": "Heading 2",
+   "anchor": "5.1 Sleep Staging Pre-Training (E1)",
+   "heading": 2
+  },
+  {
+   "idx": 74,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "5-fold cross-validation on synthetic Sleep-EDF data for 5-class staging:"
+  },
+  {
+   "idx": 75,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "E1: Macro-F1 = 0.3608 [SYNTHETIC] | Threshold: N/A (pre-training) | BELOW BENCHM"
+  },
+  {
+   "idx": 76,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "E1: Cohen's κ = 0.3847 [SYNTHETIC] | Threshold: N/A (pre-training) | BELOW BENCH"
+  },
+  {
+   "idx": 77,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "Interpretation: Substantially below published benchmarks (Almutairi et al.: 96.5"
+  },
+  {
+   "idx": 78,
+   "type": "paragraph",
+   "style": "Heading 2",
+   "anchor": "5.2 Binary Sleep Deprivation Classification (E2, H1)",
+   "heading": 2
+  },
+  {
+   "idx": 79,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "E2: AUC = 1.0000 [SYNTHETIC] | Threshold: ≥0.85 (H1) | PASS (SYNTHETIC ARTIFACT)"
+  },
+  {
+   "idx": 80,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "E2: Accuracy / Precision / Recall / F1 = 1.0000 [SYNTHETIC] | Threshold: N/A | A"
+  },
+  {
+   "idx": 81,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "Interpretation: AUC=1.0000 is an artifact of perfectly separated class distribut"
+  },
+  {
+   "idx": 82,
+   "type": "paragraph",
+   "style": "Heading 2",
+   "anchor": "5.3 Cross-Modal Embedding Alignment (E4, H2)",
+   "heading": 2
+  },
+  {
+   "idx": 83,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "E4: Pearson r = 0.3086 [SYNTHETIC] | Threshold: >0.40 (H2) | FAIL"
+  },
+  {
+   "idx": 84,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "H2 FAIL (r=0.3086 < 0.40). Statistically significant but below threshold. Failur"
+  },
+  {
+   "idx": 85,
+   "type": "paragraph",
+   "style": "Heading 2",
+   "anchor": "5.4 Cognitive Decline Prediction on NHANES (E5, H3)",
+   "heading": 2
+  },
+  {
+   "idx": 86,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "E5: AUC = 0.5144 ± 0.0255 [SYNTHETIC] | Threshold: ≥0.72 (H3) | FAIL"
+  },
+  {
+   "idx": 87,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "E5: Accuracy = 0.5012 ± 0.0198 [SYNTHETIC] | Threshold: N/A | CHANCE LEVEL"
+  },
+  {
+   "idx": 88,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "H3 FAIL (AUC=0.5144 ≪ 0.72). Performance at chance level (AUC≈0.5), indicating n"
+  },
+  {
+   "idx": 89,
+   "type": "paragraph",
+   "style": "Heading 2",
+   "anchor": "5.5 Traditional Baseline Comparison (E6, H4)",
+   "heading": 2
+  },
+  {
+   "idx": 90,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "E6 Ridge: R² = -9.5244 [SYNTHETIC] | Threshold: >0.10 (H4) | FAIL"
+  },
+  {
+   "idx": 91,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "E6 GBM: AUC = 0.4842 [SYNTHETIC] | Threshold: >0.65 (H4) | FAIL"
+  },
+  {
+   "idx": 92,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "H4 FAIL. Ridge R² << 0 indicates worse-than-mean prediction; GBM AUC ≈0.5 is nea"
+  },
+  {
+   "idx": 93,
+   "type": "paragraph",
+   "style": "Heading 3",
+   "anchor": "Hypothesis Summary",
+   "heading": 3
+  },
+  {
+   "idx": 94,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "H1: FORMALLY PASS (AUC=1.0000) but SYNTHETIC ARTIFACT — scientifically invalid. "
+  },
+  {
+   "idx": 95,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": ""
+  },
+  {
+   "idx": 96,
+   "type": "paragraph",
+   "style": "Heading 1",
+   "anchor": "6. Discussion",
+   "heading": 1
+  },
+  {
+   "idx": 97,
+   "type": "paragraph",
+   "style": "Heading 2",
+   "anchor": "6.1 Interpretation of Synthetic Results",
+   "heading": 2
+  },
+  {
+   "idx": 98,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "All outcomes derive from synthetic data: the perfect AUC=1.0000 in E2 arises fro"
+  },
+  {
+   "idx": 99,
+   "type": "paragraph",
+   "style": "Heading 2",
+   "anchor": "6.2 Comparison with Published Benchmarks",
+   "heading": 2
+  },
+  {
+   "idx": 100,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "Contextualizing against published benchmarks sets targets for future real-data v"
+  },
+  {
+   "idx": 101,
+   "type": "paragraph",
+   "style": "Heading 2",
+   "anchor": "6.3 Architectural Design Rationale",
+   "heading": 2
+  },
+  {
+   "idx": 102,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "Bi-LSTM for EEG Encoding: LSTMs excel at modeling long-range temporal dependenci"
+  },
+  {
+   "idx": 103,
+   "type": "paragraph",
+   "style": "Heading 2",
+   "anchor": "6.4 Limitations and Real-World Validation Requirements",
+   "heading": 2
+  },
+  {
+   "idx": 104,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "1. SYNTHETIC DATA: All results are from synthetic data. Scientific hypotheses H1"
+  },
+  {
+   "idx": 105,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "2. DATA ACCESS: NHANES XPT files not downloaded (CDC connectivity). Real validat"
+  },
+  {
+   "idx": 106,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "3. STATISTICAL POWER: OpenNeuro ds004902 n=71 is small; 5-fold CV leaves ~14 par"
+  },
+  {
+   "idx": 107,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "4. CHANNEL MISMATCH: Sleep-EDF provides Fpz-Cz/Pz-Oz (2 channels); architecture "
+  },
+  {
+   "idx": 108,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "5. LLM ENCODING: PubMedBERT pre-trained on biomedical literature; whether it tra"
+  },
+  {
+   "idx": 109,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "6. CONTRASTIVE LEARNING ASSUMPTIONS: NT-Xent assumes paired EEG-survey samples s"
+  },
+  {
+   "idx": 110,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "7. PSEUDO-LABEL NOISE: DSST 40th percentile is a statistical threshold, not a va"
+  },
+  {
+   "idx": 111,
+   "type": "paragraph",
+   "style": "Heading 3",
+   "anchor": "6.4.7 Seven-Week Real-World Validation Roadmap",
+   "heading": 3
+  },
+  {
+   "idx": 112,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "Week 1–2: Data Acquisition — Download NHANES 2013–2014 (CFQ_H, SLQ_H) and 2017–2"
+  },
+  {
+   "idx": 113,
+   "type": "paragraph",
+   "style": "Heading 2",
+   "anchor": "6.5 Ethical Considerations",
+   "heading": 2
+  },
+  {
+   "idx": 114,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "Data Privacy: NHANES data are de-identified and publicly available. OpenNeuro ds"
+  },
+  {
+   "idx": 115,
+   "type": "paragraph",
+   "style": "Heading 2",
+   "anchor": "6.6 Future Directions",
+   "heading": 2
+  },
+  {
+   "idx": 116,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "Multi-Modal Expansion: Incorporate additional NHANES modules (physical activity,"
+  },
+  {
+   "idx": 117,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": ""
+  },
+  {
+   "idx": 118,
+   "type": "paragraph",
+   "style": "Heading 1",
+   "anchor": "7. Conclusion",
+   "heading": 1
+  },
+  {
+   "idx": 119,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "We have presented the first unified framework integrating population-scale sleep"
+  },
+  {
+   "idx": 120,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "ALL experimental results are from synthetic data. AUC=1.0000 for E2 is a synthet"
+  },
+  {
+   "idx": 121,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "Despite limitations, the framework establishes methodological novelty: no prior "
+  },
+  {
+   "idx": 122,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": ""
+  },
+  {
+   "idx": 123,
+   "type": "paragraph",
+   "style": "Heading 1",
+   "anchor": "References",
+   "heading": 1
+  },
+  {
+   "idx": 124,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "[1] C. Sakal, T.-Y. Li, J. Li, and X. Li, \"Predicting poor performance on cognit"
+  },
+  {
+   "idx": 125,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "[2] D. V. Low, M. N. Wu, and A. P. Spira, \"Sleep Duration and Cognition in a Nat"
+  },
+  {
+   "idx": 126,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "[3] M. Stikic, R. Johnson, D. J. Levendowski, D. Popovic, R. G. Olmstead, and C."
+  },
+  {
+   "idx": 127,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "[4] Y. Harel et al., \"EEG-based prediction of reaction time during sleep depriva"
+  },
+  {
+   "idx": 128,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "[5] H. M. Almutairi, G. M. Hassan, and A. Datta, \"Classification of sleep stages"
+  },
+  {
+   "idx": 129,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "[6] M. Samaee, M. Yazdi, and D. Massicotte, \"NeuroLingua: A Language-Inspired Hi"
+  },
+  {
+   "idx": 130,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "[7] M. K. Sidhu, R. Sharma, and N. Batra, \"Automated Sleep Stage Classification "
+  },
+  {
+   "idx": 131,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "[8] A. J. Titus, \"NHANES-GPT: Large Language Models (LLMs) and the Future of Bio"
+  },
+  {
+   "idx": 132,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "[9] B. Kemp, A. H. Zwinderman, B. Tuk, H. A. C. Kamphuisen, and J. J. L. Oberye,"
+  },
+  {
+   "idx": 133,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "[10] Y. Xiang, S. Zhao, X. Wang, J. Xu, and Y. Zhou, \"A multimodal dataset of EE"
+  },
+  {
+   "idx": 134,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": ""
+  },
+  {
+   "idx": 135,
+   "type": "paragraph",
+   "style": "Heading 2",
+   "anchor": "Acknowledgments",
+   "heading": 2
+  },
+  {
+   "idx": 136,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "This work was conducted as a methodological development study. Real-world valida"
+  },
+  {
+   "idx": 137,
+   "type": "paragraph",
+   "style": "Heading 2",
+   "anchor": "Data Availability",
+   "heading": 2
+  },
+  {
+   "idx": 138,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "All datasets referenced are publicly available: NHANES (CDC website: wwwn.cdc.go"
+  },
+  {
+   "idx": 139,
+   "type": "paragraph",
+   "style": "Heading 2",
+   "anchor": "Conflict of Interest",
+   "heading": 2
+  },
+  {
+   "idx": 140,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "The authors declare no conflicts of interest."
+  },
+  {
+   "idx": 141,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": ""
+  },
+  {
+   "idx": 142,
+   "type": "paragraph",
+   "style": "Heading 1",
+   "anchor": "Appendix A: Figures (Synthetic Data)",
+   "heading": 1
+  },
+  {
+   "idx": 143,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "All figures below are generated from SYNTHETIC data. They illustrate the pipelin"
+  },
+  {
+   "idx": 144,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": ""
+  },
+  {
+   "idx": 145,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "Figure 1: Experiment Metrics Summary (Synthetic Data)"
+  },
+  {
+   "idx": 146,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "[IMAGE:media/image1.png]",
+   "has": [
+    "images"
+   ]
+  },
+  {
+   "idx": 147,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "Six-panel bar chart showing macro-F1, Cohen's κ, AUC, and R² metrics across all "
+  },
+  {
+   "idx": 148,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": ""
+  },
+  {
+   "idx": 149,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "Figure 2: Hypothesis Verdict Matrix (Synthetic Data)"
+  },
+  {
+   "idx": 150,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "[IMAGE:media/image2.png]",
+   "has": [
+    "images"
+   ]
+  },
+  {
+   "idx": 151,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "Traffic-light verdict matrix showing H1–H4 outcomes. H1: PASS (synthetic artifac"
+  },
+  {
+   "idx": 152,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": ""
+  },
+  {
+   "idx": 153,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "Figure 3: Achieved vs. Target Metrics (Synthetic Data)"
+  },
+  {
+   "idx": 154,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "[IMAGE:media/image3.png]",
+   "has": [
+    "images"
+   ]
+  },
+  {
+   "idx": 155,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "Lollipop chart comparing achieved (synthetic) metric values against pre-register"
+  },
+  {
+   "idx": 156,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": ""
+  },
+  {
+   "idx": 157,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "Figure 4: Real-World Validation Roadmap"
+  },
+  {
+   "idx": 158,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "[IMAGE:media/image4.png]",
+   "has": [
+    "images"
+   ]
+  },
+  {
+   "idx": 159,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": "Gantt-style 7-week roadmap for real-data validation: data acquisition (Weeks 1–2"
+  },
+  {
+   "idx": 160,
+   "type": "paragraph",
+   "style": "Normal",
+   "anchor": ""
+  }
+ ]
+}
